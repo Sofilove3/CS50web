@@ -1,0 +1,118 @@
+body {
+    background-image: url("images/bg-image.jpg");
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: var(--YLNNHc);
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 80%;
+    height: auto;
+    background-color: #ffbc40;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 5px 5px 5px 10px;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+}
+   
+.space {
+    margin: 100px;
+}
+
+.link-box {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: auto;
+    padding: 5px;
+    /*background-color: #ffbc40;*/
+}
+
+/* unvisited link */
+a:link {
+    color: rgb(0, 0, 0);
+  }
+  
+  /* visited link */
+  a:visited {
+    color: rgb(0, 0, 0);
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: #ffbc40;
+  }
+  
+  /* selected link */
+  a:active {
+    color: rgb(0, 0, 0);
+  }
+
+.small-link {
+    padding: 5px;
+}
+
+.search-bar {
+    display: flex;
+    position: relative;
+    min-height: 50px;
+    background: #ffbc40;
+    border: 1px solid transparent;
+    box-shadow: none;
+    border-radius: 26px;
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px;
+}
+
+.google-logo {
+    max-height: 100%;
+    max-width: 50%;
+    object-fit: contain;
+    object-position: center bottom;
+    width: auto;
+}
+
+/*
+.search-bar {
+    flex: 1;
+    display: flex;
+    width: 80%;
+    padding: 0 8px 0 0;
+}
+*/
+.search-row {
+    display: block;
+    text-align: -webkit-center;
+    unicode-bidi: isolate;
+}
+
+.s-btn {
+    background-color: #ffbc40;
+    border: 1px solid #b46000;
+    border-radius: 4px;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin: 11px 4px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
