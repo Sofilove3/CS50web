@@ -20,7 +20,7 @@ def title(request, title):
 '''
 def title(request, title):
     #logic is not working...
-    if title not in util.list_entries():
+    if title.casefold() not in (x.casefold() for x in util.list_entries()):
         return render(request, "encyclopedia/error.html", {
         })
     else:
@@ -28,3 +28,5 @@ def title(request, title):
             "content": util.get_entry(title),
             "title": title
         })
+
+# if 'MICHAEL89'.casefold() in (name.casefold() for name in USERNAMES):
