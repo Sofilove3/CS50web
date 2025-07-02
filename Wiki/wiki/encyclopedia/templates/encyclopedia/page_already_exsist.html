@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Pgae already exist
+{% endblock %}
+
+{% block body %}
+    <h1>The Page You Are Trying To Make Already Exist</h1>
+
+    <br>
+
+    <p>If you have anything to add you can try to edit the page: <a href="/{{ page }}">{{ page }}</a></p>
+
+{% endblock %}
