@@ -4,9 +4,7 @@ from . import util
 
 from django import forms
 
-from django.urls import reverse
-
-from django.http import HttpResponseRedirect
+import random
 
 class NewPageForm(forms.Form):
     page = forms.CharField(label="Name Page")
@@ -93,4 +91,15 @@ def edit(request):
     return render(request, "encyclopedia/edit.html", {
         "title": title,
         "content": content,
+    })
+
+def random_page(request):
+    all_entries = util.list_entries()
+    max_len = len(all_entries)
+    number_entry = random.randint(0, max_len -1)
+    print(number_entry)
+    entry = all_entries[number_entry]
+    return render(request, "encyclopedia/title.html", {
+        "content": util.get_entry(entry),
+        "title": entry
     })
