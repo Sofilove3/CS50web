@@ -8,4 +8,10 @@
     <h1>{{ title }}</h1>
 
     <p>{{ content }}</p>
+    <form action="/{{ title }}"  method="post">
+        {% csrf_token %}
+        <input type="hidden" name="title" value="{{ title }}">
+        <input type="hidden" name="content" value="{{ content }}">
+        <input type="submit" value="Edit Page">
+    </form>
 {% endblock %}

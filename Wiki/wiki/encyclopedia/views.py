@@ -17,6 +17,12 @@ def index(request):
     })
 
 def title(request, title):
+    if request.method == "POST":
+        return render(request, "encyclopedia/edit.html", {
+            "title": request.POST["title"],
+            "content": request.POST["content"],
+        })
+        
     if title.casefold() not in (x.casefold() for x in util.list_entries()):
         return render(request, "encyclopedia/error.html", {
         })
@@ -65,10 +71,26 @@ def new(request):
             })
             else:
                 util.save_entry(page, content)
-                return render(request, "encyclopedia/index.html", {
-                    "entries": util.list_entries()
+                return render(request, "encyclopedia/title.html", {
+                    "content": util.get_entry(page),
+                    "title": page
                 })
 
     return render(request, "encyclopedia/new.html", {
         "form": NewPageForm()
+    })
+
+def edit(request):
+    if request.method == "POST":
+        content = request.POST["content"]
+        title = request.POST["title"]
+        util.save_entry(title, content)
+        return render(request, "encyclopedia/title.html", {
+            "content": util.get_entry(title),
+            "title": title
+        })
+ 
+    return render(request, "encyclopedia/edit.html", {
+        "title": title,
+        "content": content,
     })
