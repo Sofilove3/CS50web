@@ -6,8 +6,16 @@ from django import forms
 
 import random
 
+import markdown2
+from markdown2 import Markdown
+
 class NewPageForm(forms.Form):
     page = forms.CharField(label="Name Page")
+
+def markdown_content(title):
+    content = util.get_entry(title)
+    markdowner = Markdown()
+    return markdowner.convert(content)
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -20,23 +28,24 @@ def title(request, title):
             "title": request.POST["title"],
             "content": request.POST["content"],
         })
-        
-    if title.casefold() not in (x.casefold() for x in util.list_entries()):
-        return render(request, "encyclopedia/error.html", {
-        })
     else:
-        return render(request, "encyclopedia/title.html", {
-            "content": util.get_entry(title),
-            "title": title
-        })
-    
+        if title.casefold() not in (x.casefold() for x in util.list_entries()):
+            return render(request, "encyclopedia/error.html", {
+            })
+        else:
+            return render(request, "encyclopedia/title.html", {
+                "content": markdown_content(title),
+                "title": title
+            })
+        
 def search(request):
     query = str(request.GET.get("q", "Did not work"))
     entries = util.list_entries()
 
+    # case insensitive
     if query.casefold() in (x.casefold() for x in entries):
         return render(request, "encyclopedia/title.html", {
-            "content": util.get_entry(query),
+            "content": markdown_content(query),
             "title": query
     })
 
@@ -70,7 +79,7 @@ def new(request):
             else:
                 util.save_entry(page, content)
                 return render(request, "encyclopedia/title.html", {
-                    "content": util.get_entry(page),
+                    "content": markdown_content(page),
                     "title": page
                 })
 
@@ -100,6 +109,6 @@ def random_page(request):
     print(number_entry)
     entry = all_entries[number_entry]
     return render(request, "encyclopedia/title.html", {
-        "content": util.get_entry(entry),
+        "content": markdown_content(entry),
         "title": entry
     })

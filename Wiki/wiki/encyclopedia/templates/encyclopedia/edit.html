@@ -9,7 +9,7 @@
 
     <form action="{% url 'edit' %}" method="post">
         {% csrf_token %}
-        <input type="text" id="title" name="title" value="{{ title}}" readonly>
+        <input type="text" id="title" name="title" value="{{ title }}" readonly>
         <br>
         <p><label for="content">Write body text with Markdown:</label></p>
         <textarea id="content" name="content" style="height: 500px;">{{ content }}</textarea>

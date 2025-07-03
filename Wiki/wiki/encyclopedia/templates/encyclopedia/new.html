@@ -10,8 +10,8 @@
     <form action="{% url 'new' %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <p><label for="body_text">Write body text with Markdown:</label></p>
-        <textarea id="body_text" name="body_text" style="height: 500px;"></textarea>
+        <p><label for="body_text">Write text:</label></p>
+        <textarea id="body_text" name="body_text" style="height: 500px;"><h1 id="heading"></h1></textarea>
         <input type="submit" value="Make New Page + Save">
     </form>
 {% endblock %}

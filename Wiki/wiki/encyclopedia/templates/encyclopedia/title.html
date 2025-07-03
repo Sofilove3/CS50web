@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
+    
 
-    <p>{{ content }}</p>
-    <form action="/{{ title }}"  method="post">
+    <p>{{ content | safe}}</p>
+    <form action="/wiki/{{ title }}"  method="post">
         {% csrf_token %}
         <input type="hidden" name="title" value="{{ title }}">
         <input type="hidden" name="content" value="{{ content }}">
